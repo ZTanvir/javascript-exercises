@@ -1,15 +1,28 @@
-const removeFromArray = function (myArray, item) {
-    // Create an empty array
-    let myArrayWithoutItem = [];
-    // Select all item from myArray
+const removeFromArray = function (myArray, ...items) {
+    // Declare an empty array
+    let cleanArray = [];
     for (let i = 0; i < myArray.length; i++) {
-        // if a item is similar to the item user want to remove
-        // That item will not keep in myArrayWithoutItem array
-        if (myArray[i] != item) {
-            myArrayWithoutItem.push(myArray[i]);
+        cleanArray.push(myArray[i]);
+    }
+    // 	Get the clean array item
+    for (let i = 0; i < cleanArray.length; i++) {
+        // match with item array
+        for (let number of items) {
+            //if index = 0 remove with shift
+            // console.log("main-array", cleanArray[i]);
+            // console.log("check item", number);
+            if (cleanArray[i] === number){ 
+                //else if index >0 remove with splice
+                if (i == 0) {
+                    cleanArray.shift(number);
+                } else if (i > 0) {
+                    cleanArray.splice(i, 1);
+                }
+            }
+            // console.log("done:", myArray);
         }
     }
-    return myArrayWithoutItem
+    return cleanArray;
 };
 
 // Do not edit below this line
